@@ -33,3 +33,6 @@
         default = simple
 [credential]
 	helper = osxkeychain
+[user]
+	name = Tony Kornmeier
+	email = tony@kornmeier.me
