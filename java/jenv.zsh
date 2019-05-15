@@ -1,0 +1,1 @@
+eval "$(jenv init -)" >> /Users/tk/.zshrc

@@ -20,3 +20,4 @@ zstyle ':prezto:load' pmodule \
   'prompt'
 
 zstyle ':prezto:module:prompt' theme 'pure'
+zstyle ':prezto:module:git:alias' skip 'yes'
