@@ -1,2 +1,0 @@
-export AUTH_TOKEN=dG9ueS5rb3JubWVpZXJAZGVxdWUuY29tOkFLQ3A1ZEtFNWRocThIR2tGbXlRTXQ2azdWaXZXcldHZ01QY0t6a3ljSDNaRXNkbm9zNzRMVko5TVRuelVoNmRKSzlVc2NudHM=
-export NPM_EMAIL=tony.kornmeier@deque.com
