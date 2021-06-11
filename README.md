@@ -1,18 +1,6 @@
-# TK Dotfiles
+# dotfiles
 
-This repo contains my dotfiles. There are many others like it, but this one is mine. My dotfiles are my best friend. It is my life. I must master it as I must master my life. Without me, my dotfiles are useless. Without my dotfiles, I am useless.
-
-Forked from @Holman's dotfiles, I took his general premise and edited them to fit my own needs.
-They are split into the main areas I use (JavaScript, Node, git, system libraries, and so on), so the project is structured accordingly.
-
-## what's inside
-
-A lot of stuff. Seriously, a lot of stuff. Check them out in the file browser
-above and see what components may mesh up with you.
-[Fork it](https://github.com/akornmeier/dotfiles/fork), remove what you don't
-use, and build on what you do use.
-
-## components
+## Components
 
 There's a few special files in the hierarchy.
 
@@ -30,12 +18,12 @@ There's a few special files in the hierarchy.
   but still keep those autoloaded files in your home directory. These get
   symlinked in when you run `script/bootstrap`.
 
-## install
+## Install
 
 Run this:
 
 ```sh
-git clone https://github.com/akornmeier/dotfiles.git ~/.dotfiles
+git clone https://github.com/downzer0/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 script/bootstrap
 ```
@@ -53,7 +41,4 @@ this script in `bin/`.
 
 ## programs to install from Apple App Store
 
-- NordVPN
-- Pixelmator
-- Spark Email Client
-- Todoist
+- Transporter

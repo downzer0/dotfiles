@@ -1,1 +1,1 @@
-export PATH=$PATH:$HOME/Code/webdriver
+export PATH=$PATH:$HOME/webdrivers
