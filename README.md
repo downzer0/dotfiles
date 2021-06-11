@@ -1,6 +1,6 @@
 # TK Dotfiles
 
-This is my dotfiles. There are many others like it, but this one is mine. My dotfiles are my best friend. It is my life. I must master it as I must master my life. Without me, my dotfiles are useless. Without my dotfiles, I am useless.
+This repo contains my dotfiles. There are many others like it, but this one is mine. My dotfiles are my best friend. It is my life. I must master it as I must master my life. Without me, my dotfiles are useless. Without my dotfiles, I am useless.
 
 Forked from @Holman's dotfiles, I took his general premise and edited them to fit my own needs.
 They are split into the main areas I use (JavaScript, Node, git, system libraries, and so on), so the project is structured accordingly.
