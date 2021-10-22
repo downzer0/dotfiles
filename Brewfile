@@ -25,6 +25,10 @@ brew 'starship'
 brew 'unrar'
 brew 'wget'
 # brew 'yarn' --ignore-dependencies
+brew 'iterm2'
+brew 'starship'
+brew 'autojump'
+brew 'cmatrix'
 brew 'zsh'
 
 cask 'bear'
