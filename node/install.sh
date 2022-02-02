@@ -2,17 +2,17 @@
 #
 # n
 #
-# Installs n (node version manager)
+# Installs volta (node version manager)
 
-# Check for n
-if test ! $(which n)
+# Check for volta
+if test ! $(which volta)
 then
-  echo "- Installing n..."
+  echo "- Installing Volta..."
 
   # Install the correct homebrew for each OS type
   if test "$(uname)" = "Darwin"
   then
-    ruby -e "$(curl -L git.io/n-install | bash)"
+    ruby -e "$(curl https://get.volta.sh | bash)"
   fi
 
   echo "- n installation complete..."

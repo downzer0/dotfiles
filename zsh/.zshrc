@@ -125,11 +125,7 @@ eval "$(starship init zsh)"
 # Add keys to agent
 # ssh-add "/Volumes/Keybase (dz0)/private/clrux/keys/github"
 # ssh-add "/Volumes/Keybase (dz0)/private/clrux/keys/digitalocean"
-# ssh-add "/Volumes/Keybase (dz0)/private/clrux/keys/deque/deque-windows"
-# ssh-add "/Volumes/Keybase (dz0)/private/clrux/keys/deque/deque-aws"
 ssh-add "/Users/dz0/keys/github"
-ssh-add "/Users/dz0/keys/deque-windows"
-ssh-add "/Users/dz0/keys/deque-aws"
 clear
 curl wttr.in\?0nqF
 
