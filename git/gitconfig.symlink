@@ -38,6 +38,6 @@
 	name = downzer0
 	signingkey = A1FE49C355D066C1BF7B05D0F23B028C5BD5D41B
 [commit]
-	gpgsign = true
+#	gpgsign = true
 [gpg]
-	program = gpg
+#	program = gpg
