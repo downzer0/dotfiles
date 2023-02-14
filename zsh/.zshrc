@@ -94,26 +94,14 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-export NVM_DIR="/home/dz0/.nvm"
-
 ulimit -f unlimited -t unlimited -v unlimited -n 1000 -u 1000
-
-#pgrep mongod || ( mkdir -p ~/mongodb/data/db && mongod --dbpath ~/mongodb/data/db & )
-
-export NVM_DIR="/Users/dz0/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # export ANDROID_HOME=/Users/dz0/Library/Android/sdk
 # export ANDROID_SDK_ROOT=/Users/dz0/Library/Android/sdk
 # export ANDROID_AVD_HOME=/Users/dz0/.android/avd
 
 # add gecko and chromedriver to PATH
-export PATH=$PATH:~/webdrivers
+export PATH=$PATH:$HOME/webdrivers
 
 # initialize starship
 eval "$(starship init zsh)"
@@ -123,8 +111,6 @@ eval "$(starship init zsh)"
 
 # weather and startup
 # Add keys to agent
-# ssh-add "/Volumes/Keybase (dz0)/private/clrux/keys/github"
-# ssh-add "/Volumes/Keybase (dz0)/private/clrux/keys/digitalocean"
 ssh-add "/Users/dz0/keys/github"
 clear
 curl wttr.in\?0nqF
