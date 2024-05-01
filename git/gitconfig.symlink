@@ -4,9 +4,6 @@
 [hub]
         protocol = https
 [alias]
-        co = checkout
-        wtf = !$DOTFILES/bin/git-wtf
-        rank-contributors = !$DOTFILES/bin/git-rank-contributors
         count = !git shortlog -sn
 	grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
 [color]
@@ -26,20 +23,34 @@
 [help]
         autocorrect = 1
 [push]
-        # See `git help config` (search for push.default)
-        # for more information on different options of the below setting.
-        #
-        # Setting to git 2.0 default to suppress warning message
         default = simple
-#[credential]
-#	helper = osxkeychain
+[credential]
+	helper = osxkeychain
 [user]
-	email = f07c3620@opayq.com
+	email = cr3r8uyk@gmail.com
 	name = downzer0
-	signingkey = A1FE49C355D066C1BF7B05D0F23B028C5BD5D41B
+	signingkey = 56A4F80E4A9F1988659C6E7F8D4A479591CE41E3
+[pager]
+        diff = delta
+        log = delta
+        reflog = delta
+        show = delta
+[delta]
+        plus-style = "syntax #012800"
+        minus-style = "syntax #340001"
+        syntax-theme = Dracula
+        navigate = true
+        side-by-side = true
+[interactive]
+        diffFilter = delta --color-only
 [commit]
-#	gpgsign = true
+	gpgsign = true
 [gpg]
-#	program = gpg
+	program = gpg
 [init]
 	defaultBranch = main
+[filter "lfs"]
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+        required = true

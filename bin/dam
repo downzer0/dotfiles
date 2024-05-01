@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# dam
+#
+# `dam` deletes all merged branches locally
+
+# delete all branches merged into main
+echo "=== Deleting all merged branches ==="
+git checkout main && git branch --merged | egrep -v "(^\*|main)" | xargs git branch -d
+echo "Done!"

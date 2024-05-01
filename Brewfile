@@ -1,40 +1,49 @@
 cask_args appdir: '/Applications'
 
-tap 'homebrew/bundle'
-tap 'homebrew/cask-drivers'
-tap 'homebrew/services'
+tap 'homebrew/bundle' # brew bundle
+tap 'homebrew/cask-versions' # install alternate cask versions
+# tap 'homebrew/cask-drivers'
+tap 'homebrew/services' # brew services
 
 # gnu stuff
-brew 'coreutils', args: ['with-default-names']
-brew 'findutils', args: ['with-default-names']
+brew 'coreutils'
+brew 'findutils'
 
 brew 'ack'
 brew 'gcc'
 brew 'git'
+brew 'git-delta' # syntax-highlighting pager for git and diff output
+brew 'go'
 brew 'grc'
 brew 'hub'
-brew 'jp2a'
 brew 'jq'
+brew 'mas'
 brew 'libgit2'
 brew 'openssl'
 brew 'postgresql'
-brew 'spaceman-diff'
+brew 'pnpm'
+brew 'readline'
 brew 'starship'
-brew 'unrar'
+brew 'redis'
 brew 'wget'
-brew 'iterm2'
-brew 'autojump'
-brew 'cmatrix'
 brew 'zsh'
+brew 'zsh-autosuggestions'
+brew 'zsh-syntax-highlighting'
 
 cask 'discord'
+cask 'firefox-nightly'
+cask 'firefox'
+cask 'google-chrome'
 cask 'google-earth-pro'
 cask 'insomnia'
-cask 'java'
-cask 'sketch'
+cask 'spotify'
 cask 'tableplus'
+cask 'qmk-toolbox'
+cask 'hyper'
 cask 'transmit'
 cask 'visual-studio-code'
-cask 'vivaldi'
 cask 'xquartz'
-cask 'zoom'
+
+mas 'bitwarden', id: 1352778147
+mas 'sketch', id: 1667260533
+mas 'transporter', id: 1450874784

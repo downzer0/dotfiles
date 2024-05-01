@@ -26,6 +26,9 @@ Run this:
 git clone https://github.com/downzer0/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 script/bootstrap
+
+# run periodically
+bin/dot
 ```
 
 This will symlink the appropriate files in `.dotfiles` to your home directory.
