@@ -1,3 +1,4 @@
+#!/bin/bash
 # Sets reasonable macOS defaults.
 #
 # Or, in other words, set shit how I like in macOS.
@@ -7,24 +8,23 @@
 #
 # Run ./set-defaults.sh and you'll be good to go.
 
-echo "- Installing MacOS defaults..."
+echo "🍏 Installing MacOS defaults..."
 
-# Close any open System Preferences panes, to prevent them from overriding
-# settings we’re about to change
-osascript -e 'tell application "System Preferences" to quit'
+# Close any open System Settings panes, to prevent them from overriding
+# settings we're about to change
+osascript -e 'tell application "System Settings" to quit'
 
-# Ask for the administrator password upfront
-sudo -v
-
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+# Note: sudo credentials are managed by the parent install script
+# No need to ask for password here since we're sourced into the parent shell
 
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
 
 # Set standby delay to 24 hours (default is 1 hour)
-sudo pmset -a standbydelay 86400
+# Note: standbydelay has been split into standbydelaylow and standbydelayhigh in modern macOS
+sudo pmset -a standbydelaylow 86400
+sudo pmset -a standbydelayhigh 86400
 
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
@@ -79,7 +79,8 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 # sudo systemsetup -setcomputersleep Off > /dev/null
 
 # Disable Notification Center and remove the menu bar icon
-launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
+# NOTE: This no longer works on modern macOS due to System Integrity Protection (SIP)
+# launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
 
 ###############################################################################
 # SSD-specific tweaks                                                         #
@@ -189,9 +190,11 @@ defaults write com.apple.dock expose-animation-duration -float 0.1
 # Don’t show recent applications in Dock
 defaults write com.apple.dock show-recents -bool false
 
-# Add iOS & Watch Simulator to Launchpad
-sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
-sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator (Watch).app" "/Applications/Simulator (Watch).app"
+# Add iOS Simulator to Launchpad
+# Note: Modern Xcode versions have unified the Simulator app
+if [ -d "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" ]; then
+  sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
+fi
 
 ###############################################################################
 # Safari & WebKit                                                             #
@@ -272,7 +275,5 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
 
-# Fix Robo 3T dark mode issue
-defaults write com.3tsoftwarelabs.robo3t NSRequiresAquaSystemAppearance -bool yes
 
-echo "- MacOS defaults complete..."
+echo -e "${GREEN}✓ MacOS defaults complete${NC}"

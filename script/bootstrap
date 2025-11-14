@@ -150,4 +150,17 @@ else
 fi
 
 echo ''
-success 'All installed! Now run `script/install` to complete the setup.'
+success 'All installed!'
+echo ''
+
+# Prompt user to continue with installation
+user 'Would you like to run the installation script now? (y/n)'
+read -n 1 run_install
+echo ''
+
+if [[ $run_install =~ ^[Yy]$ ]]; then
+  info 'Running installation script...'
+  exec "$DOTFILES_ROOT/script/install"
+else
+  info 'Skipping installation. Run `script/install` later to complete the setup.'
+fi

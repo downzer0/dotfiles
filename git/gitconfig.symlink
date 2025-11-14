@@ -31,13 +31,6 @@
 [user]
 	name = Tony Kornmeier
 	email = akornmeier@users.noreply.github.com
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICKn+EXhdQZhcdTMuQw5Maxe59WBjYIvD473K5ANbO9p
-[gpg]
-        format = ssh
-[gpg "ssh"]
-        program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-[commit]
-	gpgsign = true
 [pager]
         diff = delta
         log = delta
