@@ -139,19 +139,14 @@ install_dotfiles () {
   success 'dotfiles installed'
 }
 
-# setup_gitconfig
+setup_gitconfig
 install_dotfiles
 
-# If we're on a Mac, let's install and setup homebrew.
-if [ "$(uname -s)" == "Darwin" ]
-then
-  info "installing dependencies"
-  if source bin/dot > /tmp/dotfiles-dot 2>&1
-  then
-    success "dependencies installed"
-  else
-    fail "error installing dependencies"
-  fi
+# Check to see if Homebrew is installed, and install it if it is not
+if brew --version &> /dev/null; then
+    echo "Homebrew is installed."
+else
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 echo ''
