@@ -40,12 +40,12 @@ done
 
 export DOTFILES=$HOME/.dotfiles
 
+# Ask for the administrator password upfront and keep it alive
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 # Set macOS defaults
 $DOTFILES/macos/set-defaults.sh
-
-echo "› setting up homebrew"
-# Install homebrew
-$DOTFILES/homebrew/install.sh 2>&1
 
 # Update homebrew
 echo "› brew update"
@@ -55,13 +55,15 @@ brew update
 echo "› brew upgrade"
 brew upgrade --cask
 
+# Remove Homebrew's node if it was installed as a dependency (we use FNM)
+if brew list node &>/dev/null; then
+  echo "› Removing Homebrew's node (we use FNM instead)"
+  brew uninstall --ignore-dependencies node 2>/dev/null || true
+fi
+
 # Install software
 echo "› $DOTFILES/script/install"
 $DOTFILES/script/install
-
-# Copy Hyper config to default location
-echo "› sync Hyper config"
-cp $DOTFILES/hyper/.hyper.js $HOME/.hyper.js
 
 # Remove outdated versions from the cellar
 echo "› brew cleanup"

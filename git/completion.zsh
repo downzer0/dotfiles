@@ -1,9 +1,10 @@
 # Uses git's autocompletion for inner commands. Assumes an install of git's
-# bash `git-completion` script at $completion below (this is where Homebrew
-# tosses it, at least).
-completion='$(brew --prefix)/share/zsh/site-functions/_git'
+# zsh `_git` completion script at $completion below (this is where Homebrew
+# installs it).
+completion="$(brew --prefix)/share/zsh/site-functions/_git"
 
-if test -f $completion
-then
-  source $completion
+if test -f "$completion"; then
+  # Enable completion system if not already enabled
+  autoload -Uz compinit
+  compinit -i
 fi
