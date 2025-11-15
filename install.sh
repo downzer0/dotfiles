@@ -60,7 +60,35 @@ if ! command -v git &> /dev/null; then
 	echo ""
 	exit 1
 fi
-echo -e "  ${GREEN}✓ Git found${NC}"
+
+# Get current Git version
+CURRENT_GIT_VERSION=$(git --version | awk '{print $3}')
+echo -e "  ${GREEN}✓ Git found${NC} (version $CURRENT_GIT_VERSION)"
+
+# Check for Homebrew (needed to update Git)
+if command -v brew &> /dev/null; then
+	echo ""
+	echo "🔄 Checking for Git updates..."
+
+	# Update Homebrew first to get latest package info
+	brew update &> /dev/null || true
+
+	# Check if git is installed via Homebrew and if there's an update
+	if brew list git &> /dev/null; then
+		OUTDATED_GIT=$(brew outdated git)
+		if [ -n "$OUTDATED_GIT" ]; then
+			echo "  Updating Git via Homebrew..."
+			brew upgrade git
+			NEW_GIT_VERSION=$(git --version | awk '{print $3}')
+			echo -e "  ${GREEN}✓ Git updated${NC} ($CURRENT_GIT_VERSION → $NEW_GIT_VERSION)"
+		else
+			echo -e "  ${GREEN}✓ Git is already up to date${NC}"
+		fi
+	else
+		echo "  Git not installed via Homebrew, skipping update"
+		echo "  (Using system Git from Xcode Command Line Tools)"
+	fi
+fi
 
 # Clone the repository
 echo ""

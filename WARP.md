@@ -9,6 +9,7 @@ This is a personal dotfiles repository forked from @Holman's dotfiles, customize
 ## Key Commands
 
 ### Initial Setup
+
 ```bash
 # Clone and bootstrap the environment
 git clone https://github.com/akornmeier/dotfiles.git ~/.dotfiles
@@ -17,12 +18,14 @@ script/bootstrap
 ```
 
 The bootstrap script handles:
+
 - Git configuration setup
 - Symlink creation for dotfiles
 - Homebrew installation check
 - Optional full installation via `script/install`
 
 ### Maintenance
+
 ```bash
 # Update all packages and configurations
 dot
@@ -32,6 +35,7 @@ dot --edit
 ```
 
 ### Manual Installation Steps
+
 ```bash
 # Run only the installation (packages, Node.js, macOS defaults)
 script/install
@@ -44,6 +48,7 @@ script/install
 **Topic-Based Organization**: Each subdirectory represents a "topic" (e.g., `git/`, `zsh/`, `macos/`, `fnm/`)
 
 **File Naming Conventions**:
+
 - `*.symlink` - Files that get symlinked to `$HOME` as hidden files (e.g., `gitconfig.symlink` → `~/.gitconfig`)
 - `path.zsh` - Loaded first to set up `$PATH` and environment
 - `*.zsh` - Loaded into the shell environment (except path and completion files)
@@ -51,6 +56,7 @@ script/install
 - `install.sh` - Topic-specific installation scripts
 
 **Loading Sequence** (from `zsh/zshrc.symlink`):
+
 1. Load all `path.zsh` files
 2. Load all other `.zsh` files (excluding path and completion)
 3. Initialize `compinit`
@@ -62,6 +68,7 @@ script/install
 ### Package Management
 
 **Brewfile**: Single source of truth for all installed software
+
 - Brew formulas: CLI tools (git, fnm, starship, etc.)
 - Casks: GUI applications (Chrome, Discord, Warp, Zoom)
 - Taps: Additional Homebrew repositories (mongodb/brew)
@@ -72,13 +79,15 @@ script/install
 **Critical Design Decision**: This repository uses FNM (Fast Node Manager) instead of Homebrew's Node.js or nvm.
 
 **System-Wide Access**: Node.js binaries are symlinked to `/usr/local/bin/` for:
+
 - Claude MCP servers
 - GUI applications requiring Node.js
 - System services and LaunchAgents
 
 **Location**: `~/.local/share/fnm/aliases/default/bin/`
 
-**Configuration**: 
+**Configuration**:
+
 - Auto-switching enabled via `.node-version` files
 - Corepack enabled for pnpm/yarn management
 - LTS version set as default
@@ -88,11 +97,13 @@ script/install
 ### Custom Functions & Scripts
 
 **bin/**: Scripts in this directory are added to `$PATH`
+
 - `dot` - Main maintenance script for updates
 - `e` - Editor shortcuts
 - `set-defaults` - Wrapper for macOS defaults
 
 **functions/**: Shell functions with tab completion
+
 - `c` - Quick project directory navigation (uses `$PROJECTS` variable)
 - `extract` - Universal archive extraction
 - `_c` - Completion helper for `c` function
@@ -100,6 +111,7 @@ script/install
 ### macOS System Configuration
 
 **macos/set-defaults.sh**: Applies opinionated macOS system preferences
+
 - Finder settings (list view, show extensions, reveal hidden files)
 - Keyboard settings (fast repeat rate, disable press-and-hold)
 - Screen settings (disable shadow in screenshots, save to ~/Pictures)
@@ -120,10 +132,12 @@ script/install
 ## Git Configuration
 
 **Local Configuration**: `git/gitconfig.local.symlink` (gitignored)
+
 - Created during bootstrap with user-specific name/email
 - Generated from `git/gitconfig.local.symlink.example`
 
 **Aliases** (from `git/aliases.zsh`):
+
 - `glog` - Formatted graph log
 - `gl` - Pull with prune
 - `gp` - Push to origin HEAD
@@ -137,6 +151,7 @@ script/install
 **Active Oh My Zsh Plugins**: aliases, bun, deno, fnm, gh, z
 
 **Homebrew Zsh Plugins**:
+
 - zsh-autocomplete
 - zsh-autosuggestions
 - zsh-you-should-use
@@ -148,20 +163,24 @@ script/install
 ## Development Workflow
 
 ### Adding New Dotfiles
+
 1. Create file with `.symlink` extension in appropriate topic directory
 2. Run `script/bootstrap` to create symlink
 
 ### Adding New Zsh Configuration
+
 1. Create `.zsh` file in topic directory
 2. Use `path.zsh` for PATH modifications
 3. Use `completion.zsh` for completion setup
 4. Restart shell or run `source ~/.zshrc`
 
 ### Adding New Software
+
 1. Add entry to `Brewfile` (brew/cask/mas)
 2. Run `brew bundle install` or `dot`
 
 ### Testing Changes
+
 - Zsh config: `source ~/.zshrc` or open new shell
 - Symlinks: Check `~/.filename` points to correct source
 - Homebrew: `brew bundle check` to verify Brewfile state
@@ -169,6 +188,7 @@ script/install
 ## Known Issues
 
 **Mac App Store (`mas`)**: Disabled on macOS Sequoia (15.x) due to authentication issues. Install these apps manually:
+
 - Be Focused, CopyClip, Dato, Hand Mirror, Keycastr, Lungo, Magnet
 
 **Homebrew Node.js Conflicts**: If Homebrew installs node as a dependency, maintenance scripts automatically remove it to prevent conflicts with FNM.

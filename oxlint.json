@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "no-unused-vars": "warn",
+    "no-console": "off"
+  },
+  "ignore": ["node_modules", "dist", "build", ".changeset"]
+}

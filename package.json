@@ -1,14 +1,17 @@
 {
   "name": "tk-dotfiles",
   "version": "1.0.0",
-  "description": "Personal dotfiles for macOS development environment",
+  "description": "Amazing dotfiles for macOS development environment",
   "private": true,
   "scripts": {
     "changeset": "changeset",
     "changeset:add": "changeset add",
     "changeset:status": "changeset status",
     "version": "changeset version",
-    "release": "changeset tag"
+    "release": "changeset tag",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "oxlint ."
   },
   "keywords": [
     "dotfiles",
@@ -19,6 +22,8 @@
   "license": "MIT",
   "packageManager": "pnpm@10.6.5",
   "devDependencies": {
-    "@changesets/cli": "^2.29.7"
+    "@changesets/cli": "^2.29.7",
+    "oxlint": "^0.13.0",
+    "prettier": "^3.4.2"
   }
 }

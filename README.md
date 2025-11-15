@@ -1,34 +1,27 @@
 # TK Dotfiles
 
-This repo contains my dotfiles. There are many others like it, but this one is mine. My dotfiles are my best friend. It is my life. I must master it as I must master my life. Without me, my dotfiles are useless. Without my dotfiles, I am useless.
+This repo contains my dotfiles. There are many others like it, but this one is mine. My dotfiles are my best friend. It is my life. I must master it as I must master my life. Without me, my dotfiles are useless. Without my dotfiles, I am useless. (quote from Full Metal Jacket for the genZ'ers)
 
-Forked from @Holman's dotfiles, I took his general premise and edited them to fit my own needs.
-They are split into the main areas I use (JavaScript, Node, git, system libraries, and so on), so the project is structured accordingly.
+Originally forked from @Holman's dotfiles, I took his general premise and edited them to fit my own needs.
 
-## What's inside
+I use (Typescript/JavaScript, Node, Go, git, system libraries, and so on), so the project is structured accordingly.
 
-A lot of stuff. Seriously, a lot of stuff. Check them out in the file browser
-above and see what components may mesh with you.
-[Fork it](https://github.com/akornmeier/dotfiles/fork), remove what you don't
-use, and build on what you do use.
+[Fork it](https://github.com/akornmeier/dotfiles/fork), remove what you don't use, and build on what you do use.
 
-## components
+## Topics
 
-Below is the general layout of my setup. Please review this _**before**_
-running the install scripts.
+Below is the general layout of my setup. Please review this _**before**_ running the install scripts.
 
-- **bin/**: Anything in `bin/` will be added to your `$PATH` and 
-  available everywhere.
+- **bin/**: Anything in `bin/` will be added to your `$PATH` and available everywhere.
 - **Brewfile**: Manages three types of applications:
-
   1. Brew Tap - service level tasks
   2. Brew formulas - command-line tools and packages
   3. Cask - GUI applications like Chrome, Discord, Warp, and Zoom
-  
+
   **Note**: Mac App Store apps via `mas` are currently disabled due to compatibility issues with macOS Sequoia (15.x). These apps are commented out in the Brewfile and should be installed manually through the App Store.
-  
+
   **You'll want to edit this file before you run the initial setup**.
-  
+
 - **topic/\*.zsh**: Any files ending in `.zsh` get loaded into your
   environment.
 - **topic/path.zsh**: Any file named `path.zsh` is loaded first and is
@@ -51,6 +44,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/akornmeier/dotfiles/main
 ```
 
 This will:
+
 1. Clone the dotfiles repository to `~/.dotfiles`
 2. Run `dot bootstrap` to set up everything
 3. Prompt you through Git configuration and installation
@@ -77,25 +71,29 @@ dot bootstrap
 ### Prerequisites
 
 Before running the installation, you may want to review and customize:
+
 - **Brewfile**: Edit to include/exclude applications you want installed
 - **zsh/zshrc.symlink**: Update paths specific to your machine
 - **macos/set-defaults.sh**: Review macOS system preferences to be set
 
 The bootstrap command will:
+
 1. 🔧 Set up your Git configuration (name and email)
 2. 🔗 Create symlinks for dotfiles in your home directory
 3. 📦 Check if Homebrew is installed (installs if needed)
 4. ❓ Prompt you to continue with the full installation
 
 If you choose to continue, the installation (`dot install`) will:
+
 1. 📦 Install all packages from the Brewfile (brew, cask, and mas apps)
 2. 🔧 Set up FNM and Node.js LTS
-3. ⚙️  Run all topic-specific installers (macos, fnm, zsh)
+3. ⚙️ Run all topic-specific installers (macos, fnm, zsh)
 4. 🍏 Apply macOS system defaults
 
 ### Password Prompts
 
 You may be prompted for your password a few times during installation:
+
 1. **For FNM symlinks** (only on first run) - Creates system-wide Node.js access
 2. **For macOS defaults** - Applies system-level preferences
 
@@ -110,6 +108,7 @@ On subsequent runs, if everything is already configured, you may not be prompted
 - **macOS preferences**: System defaults and configurations
 
 **Note on Mac App Store Apps**: Due to compatibility issues with `mas` on macOS Sequoia (15.x), Mac App Store apps must be installed manually. The following apps are recommended but commented out in the Brewfile:
+
 - Be Focused (Pomodoro Timer)
 - CopyClip (Clipboard Manager)
 - Dato (Calendar/Time Zone App)
@@ -132,7 +131,9 @@ dot --help       # Show help
 ```
 
 ### `dot` or `dot update` (default)
+
 Intelligently updates only what's needed - perfect for regular maintenance:
+
 - 🔗 Updates symlinks only if changed
 - 🍺 Updates Homebrew to latest version
 - 📦 Upgrades outdated packages only
@@ -143,21 +144,26 @@ Intelligently updates only what's needed - perfect for regular maintenance:
 **No unnecessary operations** - if everything is up-to-date, it will say so!
 
 ### `dot install`
+
 Full installation - useful after major changes or pulling updates:
+
 - 🔗 Updates all symlinks
 - 📦 Installs all Brewfile packages
-- ⚙️  Runs all topic installers (macOS, FNM, Zsh)
+- ⚙️ Runs all topic installers (macOS, FNM, Zsh)
 - 🍏 Applies macOS system defaults
 - 🔐 Only prompts for sudo when actually needed
 
 ### `dot bootstrap`
+
 First-time setup only - run this once when setting up a new machine:
+
 - 📝 Sets up Git configuration (name and email)
 - 🔗 Creates symlinks for dotfiles
 - 🍺 Installs Homebrew if not present
 - ❓ Prompts to continue with full installation
 
 ### `dot --edit`
+
 Quickly open your dotfiles directory in your default editor (`$EDITOR`).
 
 You can find this script in `bin/dot`.
@@ -177,6 +183,7 @@ pnpm changeset:add
 ```
 
 This will prompt you to:
+
 1. Select the type of change (major, minor, or patch)
 2. Provide a description of your changes
 
@@ -185,6 +192,7 @@ The changeset file will be created in `.changeset/` and committed with your PR.
 ### Release Process
 
 When changes are merged to `main`, the GitHub Action workflow will:
+
 1. Detect changesets and create a "Version Packages" PR
 2. The PR will update the version in `package.json` and generate CHANGELOG.md
 3. When the version PR is merged, it creates a Git tag for the release
@@ -209,6 +217,7 @@ pnpm release            # Create git tags for new versions
 ### Mac App Store Apps (Mas)
 
 The `mas` CLI tool has known compatibility issues with macOS Sequoia (15.x) and newer versions. Due to Apple's changes in the App Store authentication system:
+
 - `mas account` and `mas signin` commands no longer work
 - Installation often fails with `PKInstallErrorDomain Code=201` errors
 - Even after manually "purchasing" apps, installation may fail
@@ -218,6 +227,7 @@ The `mas` CLI tool has known compatibility issues with macOS Sequoia (15.x) and 
 ### FNM and Node.js
 
 FNM (Fast Node Manager) is used instead of nvm for better performance. Node.js binaries are symlinked to `/usr/local/bin` for system-wide access, which is particularly useful for:
+
 - Claude MCP servers
 - GUI applications that need Node.js
 - System services and LaunchAgents
