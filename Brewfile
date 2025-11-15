@@ -39,6 +39,7 @@ cask 'discord' # VoIP and chat app
 cask 'firefox' # Web browser
 cask 'font-fira-code-nerd-font' # Monospace font with programming ligatures
 cask 'google-chrome' # Web browser
+cask 'ghostty' # Terminal emulator
 cask 'insomnia' # REST client
 cask 'readdle-spark' # Email client
 cask 'spotify' # Music streaming service

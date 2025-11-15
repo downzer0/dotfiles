@@ -13,7 +13,7 @@ echo "🔍 Checking for macOS updates..."
 UPDATE_COUNT=$(softwareupdate -l 2>&1 | grep -c "recommended" || true)
 
 if [ "$UPDATE_COUNT" -gt 0 ]; then
-  echo " $UPDATE_COUNT update(s) available."
+  echo -e " ${YELLOW}$UPDATE_COUNT update(s) available.${NC}"
   echo ""
 
   # Prompt with timeout
@@ -43,6 +43,5 @@ if [ "$UPDATE_COUNT" -gt 0 ]; then
     echo " Run 'sudo softwareupdate -i -a' later to install."
   fi
 else
-  echo ""
-  echo -e "${GREEN}✓ System is up to date.${NC}"
+  echo -e "  ${GREEN}✓ System is up to date.${NC}"
 fi

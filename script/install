@@ -2,134 +2,18 @@
 #
 # Computer, become self-aware.
 #
-# Run all dotfiles installers.
-
-set -e
+# This script is now a wrapper that delegates to `dot install`
+# for a unified dotfiles management experience.
 
 cd "$(dirname $0)"/..
 DOTFILES_ROOT=$(pwd -P)
 
-# Color codes
-BLUE='\033[0;34m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-NC='\033[0m' # No Color
+set -e
 
-echo ""
-echo -e "${BLUE}🚀 Becoming self-aware...${NC}"
-echo ""
-
-# Run Homebrew through the Brewfile
-echo -e "${BLUE}📦 Installing Homebrew packages...${NC}"
-echo ""
-brew bundle install
-
-echo ""
-echo -e "${BLUE}⚙️  Running installer scripts...${NC}"
-echo ""
-
-# Run macos installer first
-if [ -f "$DOTFILES_ROOT/macos/install.sh" ]; then
-  source "$DOTFILES_ROOT/macos/install.sh"
-fi
-
-# Run FNM installer with inline sudo commands to avoid session loss
-if [ -f "$DOTFILES_ROOT/fnm/install.sh" ]; then
-  echo ""
-  echo -e "${BLUE}🔧 Setting up FNM and Node.js...${NC}"
-  echo ""
-
-  # Remove Homebrew's node if it was installed as a dependency
-  if brew list node &>/dev/null; then
-    echo -e "${YELLOW}⚠️  Removing Homebrew's node (we use FNM instead)...${NC}"
-    echo ""
-    brew uninstall --ignore-dependencies node 2>/dev/null || true
-    echo ""
-  fi
-
-  # Set up FNM environment
-  eval "$(fnm env --use-on-cd --version-file-strategy=recursive --corepack-enabled --shell bash)"
-
-  # Check if LTS is already installed and set as default
-  CURRENT_NODE=$(fnm current 2>/dev/null || echo "none")
-  if fnm list | grep -q "lts-latest" && [ "$CURRENT_NODE" != "none" ]; then
-    echo -e "${GREEN}✓ Node.js LTS already installed: $CURRENT_NODE${NC}"
-    echo ""
-  else
-    # Install latest LTS version of Node.js using FNM
-    echo "📥 Installing latest Node.js LTS version..."
-    fnm install --lts
-    fnm default lts-latest
-    echo -e "${GREEN}✓ Installed Node.js $(fnm current)${NC}"
-    echo ""
-  fi
-
-  # Create or update symlinks to the default FNM Node version for system-wide access
-  # This allows non-shell processes (like Claude MCP) to find Node.js
-
-  # Check if symlinks already exist and are correct
-  SYMLINKS_NEEDED=false
-  for cmd in node npm npx corepack; do
-    if [ ! -L "/usr/local/bin/$cmd" ] || [ "$(readlink /usr/local/bin/$cmd)" != "$HOME/.local/share/fnm/aliases/default/bin/$cmd" ]; then
-      SYMLINKS_NEEDED=true
-      break
-    fi
-  done
-
-  if [ "$SYMLINKS_NEEDED" = true ]; then
-    echo "  🔗 Creating symlinks for global Node.js access..."
-    echo ""
-
-    # Authenticate RIGHT before we need sudo
-    if ! sudo -n true 2>/dev/null; then
-      echo ""
-      echo -e "${YELLOW}🔐 Administrator privileges required for creating symlinks.${NC}"
-      sudo -v
-      echo ""
-    fi
-
-    sudo mkdir -p /usr/local/bin
-    sudo ln -sf "$HOME/.local/share/fnm/aliases/default/bin/node" /usr/local/bin/node
-    sudo ln -sf "$HOME/.local/share/fnm/aliases/default/bin/npm" /usr/local/bin/npm
-    sudo ln -sf "$HOME/.local/share/fnm/aliases/default/bin/npx" /usr/local/bin/npx
-    sudo ln -sf "$HOME/.local/share/fnm/aliases/default/bin/corepack" /usr/local/bin/corepack
-    echo -e "${GREEN}✓ Symlinks created${NC}"
-    echo ""
-  else
-    echo -e "${GREEN}✓ Symlinks already configured correctly${NC}"
-    echo ""
-  fi
-
-  echo -e "${GREEN}✓ FNM setup complete!${NC}"
-  echo "- 📦 node: $(node --version)"
-  echo "- 📦 npm: $(npm --version)"
-  echo "- 📦 npx: $(npx --version)"
-  echo "- 📦 corepack: $(corepack --version)"
-  echo ""
-fi
-
-# Run zsh installer
-if [ -f "$DOTFILES_ROOT/zsh/install.sh" ]; then
-  source "$DOTFILES_ROOT/zsh/install.sh"
-fi
-
-# Set macOS defaults
-if [ -f "$DOTFILES_ROOT/macos/set-defaults.sh" ]; then
-  # Authenticate before running macOS defaults (requires sudo)
-  if ! sudo -n true 2>/dev/null; then
-    echo -e "${YELLOW}🔐 Administrator privileges required for setting macOS defaults.${NC}"
-    sudo -v
-    echo ""
-  fi
-
-  source "$DOTFILES_ROOT/macos/set-defaults.sh"
+# Check if dot command exists
+if [ -x "$DOTFILES_ROOT/bin/dot" ]; then
+	exec "$DOTFILES_ROOT/bin/dot" install
 else
-  echo -e " ${YELLOW}⚠️  macOS defaults script not found, skipping...${NC}"
-  echo ""
+	echo "Error: dot command not found at $DOTFILES_ROOT/bin/dot"
+	exit 1
 fi
-
-echo ""
-echo -e "${GREEN}✨ Setup complete! Your machine is fully configured.${NC}"
-echo ""
-echo "💡 Run the 'dot' command periodically to keep things up-to-date."
-echo ""
