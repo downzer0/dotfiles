@@ -35,6 +35,7 @@ brew 'zsh-syntax-highlighting' # Terminal bliss
 brew 'zsh' # UNIX shell (command interpreter)
 
 cask '1password' # Password manager
+cask 'claude-code' # AI programming friend
 cask 'discord' # VoIP and chat app
 cask 'firefox' # Web browser
 cask 'font-fira-code-nerd-font' # Monospace font with programming ligatures

@@ -20,6 +20,15 @@ dotfilesDirectory="$(cd "$( dirname "$parentDirectory" )" && pwd -P)"
 export DOTFILES="$dotfilesDirectory"
 
 # Helper functions
+show_banner() {
+	# Try to show fancy banner if node is available
+	if command -v node &> /dev/null && [ -f "$DOTFILES/bin/lib/banner.mjs" ]; then
+		node "$DOTFILES/bin/lib/banner.mjs" "DOT" 2>/dev/null || echo "DOT"
+	else
+		echo "DOT"
+	fi
+}
+
 info () {
   printf "\r  [ \033[00;34m..\033[0m ] $1\n"
 }
@@ -199,6 +208,8 @@ install_dotfiles () {
 # Bootstrap: First-time setup
 cmd_bootstrap() {
 	echo ""
+	show_banner
+	echo ""
 	echo "============================================================"
 	echo -e "${BLUE}🚀 Bootstrapping dotfiles...${NC}"
 	echo "============================================================"
@@ -234,6 +245,8 @@ cmd_bootstrap() {
 
 # Install: Full installation
 cmd_install() {
+	echo ""
+	show_banner
 	echo ""
 	echo "============================================================"
 	echo -e "${BLUE}📦 Running full installation...${NC}"
@@ -311,12 +324,11 @@ cmd_install() {
 			echo -e "  ${GREEN}✓ Symlinks already configured correctly${NC}"
 		fi
 
-		echo ""
-		echo -e "${GREEN}✓ FNM setup complete!${NC}"
-		echo "  📦 node: $(node --version)"
-		echo "  📦 npm: $(npm --version)"
-		echo "  📦 npx: $(npx --version)"
-		echo "  📦 corepack: $(corepack --version)"
+		echo -e "  ${YELLOW}- 📦 node: $(node --version)${NC}"
+		echo -e "  ${YELLOW}- 📦 npm: $(npm --version)${NC}"
+		echo -e "  ${YELLOW}- 📦 npx: $(npx --version)${NC}"
+		echo -e "  ${YELLOW}- 📦 corepack: $(corepack --version)${NC}"
+		echo -e "  ${GREEN}✓ FNM setup complete!${NC}"
 	fi
 
 	# Run zsh installer
@@ -337,14 +349,19 @@ cmd_install() {
 	fi
 
 	echo ""
-	echo -e "${GREEN}✨ Installation complete! Your machine is fully configured.${NC}"
+	echo "============================================================"
+    echo -e "${GREEN}✅ Installation complete!${NC}"
+    echo "============================================================"
 	echo ""
-	echo "💡 Run 'dot' or 'dot update' periodically to keep things up-to-date."
+	echo "✨ Your machine is fully configured."
+	echo -e "  💡 Run ${YELLOW}'dot'${NC} or ${YELLOW}'dot update'${NC} periodically to keep things up-to-date."
 	echo ""
 }
 
 # Update: Smart periodic updates
 cmd_update() {
+	echo ""
+	show_banner
 	echo ""
 	echo "============================================================"
 	echo -e "${BLUE}🔄 Running smart updates...${NC}"
@@ -405,7 +422,12 @@ cmd_update() {
 	echo -e "  ${GREEN}✓ Cleanup complete${NC}"
 
 	echo ""
-	echo -e "${GREEN}✨ Updates complete!${NC}"
+	echo "============================================================"
+    echo -e "${GREEN}✅ Installation complete!${NC}"
+    echo "============================================================"
+	echo ""
+	echo "✨ Updates complete!"
+	echo -e "  💡 Run ${YELLOW}'dot'${NC} or ${YELLOW}'dot update'${NC} periodically to keep things up-to-date."
 	echo ""
 }
 

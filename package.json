@@ -25,5 +25,10 @@
     "@changesets/cli": "^2.29.7",
     "oxlint": "^0.13.0",
     "prettier": "^3.4.2"
+  },
+  "dependencies": {
+    "@types/figlet": "^1.7.0",
+    "figlet": "^1.9.4",
+    "gradient-string": "^3.0.0"
   }
 }
