@@ -12,7 +12,7 @@ set -e
 
 # Check if dot command exists
 if [ -x "$DOTFILES_ROOT/bin/dot" ]; then
-	exec "$DOTFILES_ROOT/bin/dot" install
+  exec "$DOTFILES_ROOT/bin/dot" install
 else
 	echo "Error: dot command not found at $DOTFILES_ROOT/bin/dot"
 	exit 1
