@@ -4,7 +4,7 @@
 # This script installs the latest LTS version of Node.js and creates symlinks
 # These symlinks allow Claude MCP commands to use the Node.js version managed by FNM
 
-echo "› Setting up FNM and Node.js..."
+echo "📦 Setting up FNM and Node.js..."
 
 # Remove Homebrew's node if it was installed as a dependency
 if brew list node &>/dev/null; then

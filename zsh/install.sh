@@ -1,6 +1,10 @@
 #!/bin/bash
 #
 # Install Oh My Zsh
+
+echo ""
+echo "🔍 Checking for OMZ..."
+
 if [ ! -d "${HOME}/.oh-my-zsh" ]; then
   echo "Installing Oh My Zsh..."
 
@@ -14,8 +18,7 @@ if [ ! -d "${HOME}/.oh-my-zsh" ]; then
     ln -s "${HOME}/.dotfiles/zsh/zshrc.symlink" "${HOME}/.zshrc"
   fi
 
-  echo "🌈 Oh My Zsh installed."
+  echo -e "  ${GREEN}✓ Oh My Zsh installed. 🌈${NC}"
 else
-  echo "🌈 Oh My Zsh installed."
+    echo -e "  ${GREEN}✓ Oh My Zsh installed. 🌈${NC}"
 fi
-echo ""

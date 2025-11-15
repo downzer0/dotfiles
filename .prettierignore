@@ -1,0 +1,22 @@
+# Dependencies
+node_modules
+pnpm-lock.yaml
+
+# Build outputs
+dist
+build
+*.log
+
+# Cache
+.cache
+.DS_Store
+
+# Changesets
+.changeset/*.md
+
+# Git
+.git
+
+# macOS
+*.dmg
+*.app
