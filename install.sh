@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 #
-# Quick installer for TK dotfiles
+# Quick installer for dotfiles
 #
 # Usage:
-#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/akornmeier/dotfiles/main/install.sh)"
+#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/downzer0/dotfiles/main/install.sh)"
 #
 
 set -e
@@ -16,11 +16,11 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 DOTFILES_DIR="$HOME/.dotfiles"
-REPO_URL="https://github.com/akornmeier/dotfiles.git"
+REPO_URL="https://github.com/downzer0/dotfiles.git"
 
 echo ""
 echo "============================================================"
-echo -e "${BLUE}🚀 TK Dotfiles Installer${NC}"
+echo -e "${BLUE}🚀 Dotfiles Installer${NC}"
 echo "============================================================"
 echo ""
 

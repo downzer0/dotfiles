@@ -30,8 +30,8 @@
         default = simple
 	autoSetupRemote = true
 [user]
-	name = Tony Kornmeier
-	email = akornmeier@users.noreply.github.com
+	name = Chris McRiguez
+	email = cr3r8uyk@gmail.com
 [pager]
         diff = delta
         log = delta

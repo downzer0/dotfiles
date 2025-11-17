@@ -34,7 +34,6 @@ brew 'zsh-you-should-use' # Zsh plugin that reminds you to use existing aliases
 brew 'zsh-syntax-highlighting' # Terminal bliss
 brew 'zsh' # UNIX shell (command interpreter)
 
-cask '1password' # Password manager
 cask 'claude-code' # AI programming friend
 cask 'discord' # VoIP and chat app
 cask 'firefox' # Web browser
@@ -42,11 +41,11 @@ cask 'font-fira-code-nerd-font' # Monospace font with programming ligatures
 cask 'google-chrome' # Web browser
 cask 'ghostty' # Terminal emulator
 cask 'insomnia' # REST client
-cask 'readdle-spark' # Email client
 cask 'spotify' # Music streaming service
 cask 'tableplus' # GUI for databases
 cask 'warp' # Terminal built for speed and safety
 cask 'zed' # Code editor
+cask 'visual-studio-code' # Code editor
 cask 'zoom' # Video conferencing software
 
 # Install mas apps

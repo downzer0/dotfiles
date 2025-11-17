@@ -2,16 +2,6 @@
   <img src=".github/assets/logo.png" alt="DOT Logo" width="200"/>
 </div>
 
-# TK Dotfiles
-
-This repo contains my dotfiles. There are many others like it, but this one is mine. My dotfiles are my best friend. It is my life. I must master it as I must master my life. Without me, my dotfiles are useless. Without my dotfiles, I am useless. (quote from Full Metal Jacket for the Gen Z'ers)
-
-Originally forked from @Holman's dotfiles, I took his general premise and edited them to fit my own needs.
-
-I use (Typescript/JavaScript, Node, Go, git, system libraries, and so on), so the project is structured accordingly.
-
-[Fork it](https://github.com/akornmeier/dotfiles/fork), remove what you don't use, and build on what you do use.
-
 ## Topics
 
 Below is the general layout of my setup. Please review this _**before**_ running the install scripts.
@@ -44,7 +34,7 @@ Below is the general layout of my setup. Please review this _**before**_ running
 On a fresh macOS machine, run this one-liner to install everything:
 
 ```sh
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/akornmeier/dotfiles/main/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/downzer0/dotfiles/main/install.sh)"
 ```
 
 This will:
@@ -60,9 +50,6 @@ This will:
 If you prefer more control, clone and run manually:
 
 ```sh
-# Clone (or fork) the repo
-git clone https://github.com/akornmeier/dotfiles.git ~/.dotfiles
-
 # Navigate to the directory
 cd ~/.dotfiles
 
